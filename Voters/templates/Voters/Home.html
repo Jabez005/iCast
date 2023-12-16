@@ -1,0 +1,388 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{%static 'css/landingstyles.css'%}" />
+    <!-- CSS -->
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- AOS -->
+
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="{%static 'css/fontawesome.min.css'%}" />
+    <!-- FONTAWESOME -->
+
+
+    <title>iCast</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+
+    <header>
+      <div class="container flex-row">
+        <div class="header__logo">
+          <img src="{% static 'images/iCast Images/iCast.png' %}" alt="iCast Logo" />
+        </div>
+        <nav>
+          <ul class="header__menu flex-row">
+            <li>
+              <a href="#hero" style="color: #FFC220;">Home</a>
+            </li>
+            <li>
+              <a href="{%url 'partylist_view' %}">Partylists</a>
+            </li>
+            <li>
+              <a href="{%url 'candidate_cards_view' %}">Candidates</a>
+            </li>
+            <li>
+              <a href="{% url 'Voting_open' %}">Vote Now</a>
+            </li>
+            <li>
+              <a href="{% url 'results_page' %}">Results</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="right flex-center">
+          <a href="landing.html" class="btn btn-secondary">Logout</a>
+          <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HEADER -->
+
+    <!-- HERO -->
+
+    <section id="hero" class="container flex-row" style="background-image: url('{% static 'images/iCast Images/landingbackground.png' %}');
+    background-size: cover; background-position: center; background-repeat: no-repeat;">
+      <div class="hero__content">
+        <h1 class="title">Casting Futures for <span>Empowered
+          Citizens</span>, Your Digital Voice in Every Election</h1>
+        <p class="text">
+          Fellow citizens, iCast is your digital democracy, simplifying the
+          voting process for you. Make your voice count with ease. Join in
+          shaping the future of your institutionn with a few simple clicks.
+          Your voice matters, and iCast ensures it's heard loud and clear.
+        </p>
+        <a href="request.html" class="btn btn-primary">Join Now</a>
+      </div>
+    </section>
+    
+    <!-- HERO -->
+
+    <!-- ABOUT -->
+
+    <section id="about" class="container flex-center flex-column">
+      <h5 class="section-subheading">OUR MANIFESTO</h5>
+      <h2 class="section-heading">OUR MISSION AND VISION</h2>
+      <div class="features text-center">
+        <div class="feature" style="--color: maroon">
+          <div class="feature__icon">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          <h3 class="feature__title">Our Mission</h3>
+          <p class="feature__text">
+            Our mission is to redefine elections by providing a
+            user-friendly, secure, and transparent e-voting platform.
+            We are dedicate to enhancing the organizations representation
+            experience, ensuring every voice is heard, and fostering a
+            vibrant and engaged community
+          </p>
+        </div>
+
+        <div class="feature" style="--color: #ffc220">
+          <div class="feature__icon">
+            <i class="fa-solid fa-eye"></i>
+          </div>
+          <h3 class="feature__title">Our Vision</h3>
+          <p class="feature__text">
+            To empower individual through iCast,
+            shaping the future of representation with
+            accessible and secure digital voting.
+          </p>
+        </div>
+
+        <div class="feature" style="--color: #2b2a4c">
+          <div class="feature__icon">
+            <i class="fa-solid fa-handshake-simple"></i>
+          </div>
+          <h3 class="feature__title">Core Values</h3>
+          <p class="feature__text">
+            To empower individual through iCast,
+            shaping the future of representation with
+            accessible and secure digital voting.
+          </p>
+        </div>
+      </div>
+      <div class="about__details flex-center">
+        <div class="about__details-content">
+          <h1>Everything You Need to Know About Us</h1>
+          <p>The iCast has been implemented to transcend the limitations of
+            traditional voting methods, ushering in a new era of coolective
+            decision-making. Tqailored for diverse groups and organizations,
+            this system ensures that every participant's voice is not only
+            heard but accurately represented.</p>
+            <br>
+          <p>iCast embodies a transformative shift towards enhanced 
+            efficiency and transparency in voting systems. Through its
+            streamlined interface, security measures, and centralized
+            database, iCast paves the way for a new era where casting votes
+            becomes not only convenient but also empowered by innovation.</p>
+          <a href="#" class="btn btn-primary"> Learn More</a>
+        </div>
+        <div class="about__details-img">
+          <img src={% static 'images/iCast Images/vote.png' %} alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+
+    <!-- SERVICES -->
+
+    <section id="services" style="background: url('{% static 'images/iCast Images/services-bg.png' %}'); 
+    background-repeat: no-repeat; background-position: top; background-size: 100% 80%;">
+      <div class="container">
+        <h5 class="section-subheading">What we Do</h5>
+        <h2 class="section-heading right">Our Solution is to Digitalize Elections</h2>
+        <div class="services">
+          <div class="service">
+            <div class="service__icon">
+              <img src={% static 'images/iCast Images/electionservice.png' %} alt="">
+            </div>
+            <h3 class="services__title">Seamless Voting</h3>
+            <p class="services__text text-center">
+              Offer an intuitive and accessible online platform for convenient user engagement.
+            </p>
+            <div class="arrow-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div class="service">
+            <div class="service__icon">
+              <img src={% static 'images/iCast Images/voteservice.png' %} alt="">
+            </div>
+            <h3 class="services__title">Voter Registration</h3>
+            <p class="services__text text-center">
+              Facilitate the creation of user accounts for eligible voters.
+            </p>
+            <div class="arrow-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div class="service">
+            <div class="service__icon">
+              <img src={% static 'images/iCast Images/candidateservice.png' %} alt="">
+            </div>
+            <h3 class="services__title">Candidacy Filing</h3>
+            <p class="services__text text-center">
+              Streamline the process for candidates to file their candidacy electronically.
+            </p>
+            <div class="arrow-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div class="service">
+            <div class="service__icon">
+              <img src={% static 'images/iCast Images/automateservice.png' %} alt="">
+            </div>
+            <h3 class="services__title">Automated Results</h3>
+            <p class="services__text text-center">
+              Provide real-time, automated tallying of election results for immediate reporting.
+            </p>
+            <div class="arrow-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div class="service">
+            <div class="service__icon">
+              <img src={% static 'images/iCast Images/dataservice.png' %} alt="">
+            </div>
+            <h3 class="services__title">Data Analysis</h3>
+            <p class="services__text text-center">
+              Provide a data analysis component to interpret and filter voters' choices for a deeper understanding of election dynamics.
+            </p>
+            <div class="arrow-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div class="service">
+            <div class="service__icon">
+              <img src={% static 'images/iCast Images/centralizedservice.png' %} alt="">
+            </div>
+            <h3 class="services__title">Centralized Database</h3>
+            <p class="services__text text-center">
+              Create and maintain a centralized database for all votes to streamline data management and enhance transparency.
+            </p>
+            <div class="arrow-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SERVICES -->
+
+    <!-- TEAM -->
+
+    <section id="team" class="container">
+      <h5 class="section-subheading text-center">Meet Our Team</h5>
+      <h2 class="section-heading text-center right left">
+        The Developers
+      </h2>
+      <div class="members">
+        <div class="member">
+          <div class="member__img">
+            <img src={% static 'images/iCast Images/chavez.png' %} alt="">
+          </div>
+          <div class="member__content">
+            <h1>Jabez Chavez</h1>
+            <p>Backend Developer</p>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="member__img">
+            <img src={% static 'images/iCast Images/legaspi.png' %} alt="">
+          </div>
+          <div class="member__content">
+            <h1>Raymond Legaspi</h1>
+            <p>Frontend Developer</p>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="member__img">
+            <img src={% static 'images/iCast Images/maldecir.png' %} alt="">
+          </div>
+          <div class="member__content">
+            <h1>Lenard Maldecir</h1>
+            <p>Frontend Developer</p>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="member__img">
+            <img src={% static 'images/iCast Images/yandoc.png' %} alt="">
+          </div>
+          <div class="member__content">
+            <h1>Francis Yandoc</h1>
+            <p>Frontend Developer</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+
+    <!-- FOOTER -->
+
+    <footer>
+      <div class="container">
+        <div class="footer__content">
+          <div class="footer__details">
+            <div class="footer__logo">
+              <img src={% static 'images/iCast Images/iCast.png' %} alt="iCast">
+            </div>
+            <p class="footer__text">
+              iCast streamlines and digitalizes the voting process, ensuring secure
+              and efficient representation for all our clients.
+            </p>
+            <div class="footer__newsletter">
+              <form action="#" 
+              class="footer__newsletter-form">
+              <input type="email" placeholder="Submit Email" required>
+              <div class="icon">
+                <i class="fa fa-envelope"></i>
+              </div>
+            </form>
+            </div>
+          </div>
+          <div class="footer__menu">
+            <h3 class="footer__menu-title">Quick Links</h3>
+            <ul class="footer__menu-list">
+              <li><a href="#" style="color:#747474">Home</a></li>
+              <li><a href="#" style="color:#747474">About Us</a></li>
+              <li><a href="#" style="color:#747474">Services</a></li>
+              <li><a href="#" style="color:#747474">Our Team</a></li>
+              <li><a href="#" style="color:#747474">Request for Use</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__menu">
+            <h3 class="footer__menu-title">Services</h3>
+            <ul class="footer__menu-list">
+              <li><a href="#" style="color:#747474">Seamless Voting</a></li>
+              <li><a href="#" style="color:#747474">Voter Registration</a></li>
+              <li><a href="#" style="color:#747474">Candidacy Filing</a></li>
+              <li><a href="#" style="color:#747474">Automated Results</a></li>
+              <li><a href="#" style="color:#747474">Data Analysis</a></li>
+              <li><a href="#" style="color:#747474">Centralized Database</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__menu">
+            <h3 class="footer__menu-title">Contact Us</h3>
+            <ul class="footer__menu-list">
+              <li><a href="#" style="color:#747474">+63 951 729 8377</a></li>
+              <li><a href="#" style="color:#747474">icastvoting@gmail.com</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <div class="footer__bottom-icons">
+            <p>Follow us</p>
+            <a href="#" class="facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="#" class="twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+
+            <a href="#" class="instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="#" class="linkedin">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+          <p>&copy; 2023 iCast. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- FOOTER -->
+
+    <!-- FONTAWESOME -->
+    <script src="assets/js/fontawesome.min.js"></script>
+    <!-- FONTAWESOME -->
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- AOS -->
+
+    <!-- SCRIPTS -->
+    <script src="assets/js/script.js"></script>
+    <!-- SCRIPTS -->
+
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

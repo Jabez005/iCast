@@ -1,0 +1,88 @@
+{% extends '../base/Admin_base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <title>Election Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+<main class="main-container">
+    <div class="main-title">
+      <h2> Voting Results Tally</h2>
+  </div>
+  <div class="button-group">
+      <a href="{% url 'latest_votes' %}"><button id="results-btn">Results</button></a>
+      <a href="{% url 'votes_per_position' %}"><button id="total-votes-btn">Votes per Position</button></a>
+      <a href="{% url 'print_results' %}"><button id="print-results-btn">Print Results</button></a>
+  </div>
+  <center>
+  <div class="main-cards" style="grid-template-columns: none; color: black;" >
+      <div id="charts"></div>
+  </div>
+  </center>
+<script id="chart-data" type="application/json">{{ chart_data|safe }}</script>
+
+  
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const chartData = JSON.parse(document.getElementById('chart-data').textContent);
+  const chartsContainer = document.getElementById('charts');
+
+  chartData.forEach((position, index) => {
+    // Create chart container div
+    const chartContainer = document.createElement('div');
+    chartContainer.classList.add('chart-container');
+
+    // Create title
+    const title = document.createElement('h3');
+    title.textContent = position.position;
+    chartContainer.appendChild(title);
+
+    // Create div for the ApexChart
+    const chartDiv = document.createElement('div');
+    chartDiv.id = 'chart-' + (index + 1);
+    chartContainer.appendChild(chartDiv);
+
+    // Append the chart container to the main container
+    chartsContainer.appendChild(chartContainer);
+
+    // Prepare the data for the chart
+    const seriesData = position.candidates.map(c => c.votes);
+    const categories = position.candidates.map(c => c.name);
+
+    // Create the chart
+    var options = {
+      series: [{
+        name: position.position,
+        data: seriesData
+      }],
+      chart: {
+        type: 'bar',
+        height: 250, // Adjust height as needed
+        width: '50%' // You can also use absolute values like '400px'
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        categories: categories
+      }
+    };
+
+    // Initialize the chart
+    var chart = new ApexCharts(chartDiv, options);
+    chart.render();
+  });
+});
+// Functions to handle displaying different content based on button clicked
+// You will need to write these functions to change what is displayed in the '#charts' div or other divs.
+</script>
+</main>
+</body>
+{% endblock %}

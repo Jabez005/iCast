@@ -1,0 +1,52 @@
+{% extends '../base/Admin_base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+
+{% block content %}  
+<body>
+    {% if fields %}
+  <!-- main -->
+  <main class="main-container">
+    <div class="main-title">
+        <h2>Manage Candidates</h2>
+    </div>
+
+    <div class="main-cards" style="grid-template-columns: none;">
+        <table id="example" class="table table-striped " style="width:100%">
+            <thead>
+                <tr>
+                    {% for field in fields %}
+                    <th style="background-color:#2B2A4C;color:#FFF;text-align:center;">{{ field.field_name }}</th>
+                    {% endfor %}
+                    <th style="background-color:#2B2A4C;color:#FFF;text-align:center;">Position</th>
+                    <th style="background-color:#2B2A4C;color:#FFF;text-align:center;">Partylist</th>
+                    <th style="background-color:#2B2A4C;color:#FFF;text-align:center;">Candidate Status</th>
+                    <th style="background-color:#2B2A4C;color:#FFF;text-align:center;">Votes</th>
+                </tr>
+            </thead>
+            <tbody id="dynamicTableBody">
+                {% for application in applications %}
+                    <tr>
+                    {% for field in fields %}
+                    <td>{{ application.data|get_dynamic_field:field.field_name }}</td>
+                    {% endfor %}
+                    <td>{{ application.positions.Pos_name }}</td> 
+                    <td>{{ application.partylist.Party_name}}</td> 
+                    <td>{{ application.status }}</td>
+                    <td>{{ application.candidate.votes }}</td>
+                    <td><a href="{% url 'generate_view' application.id %}" class="btn btn-primary">View Details</a></td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+{% else %}
+<!-- If no fields exist, show the button to create the form -->
+<a href="{% url 'field_create' %}" class="btn btn-primary">Create Candidate Application Form</a>
+{% endif %}
+
+</div>
+</main>
+</body>
+{% endblock %}

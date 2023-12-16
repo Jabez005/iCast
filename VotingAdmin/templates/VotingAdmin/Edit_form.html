@@ -1,0 +1,59 @@
+{% extends '../base/Admin_base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+<h2>Edit Candidate Application Form</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ formset.management_form }} <!-- Management form is needed to manage the formset -->
+    <div id="formset-container" >
+        {% for form in formset %}
+        <div class="dynamic-form">
+            {{ form.field_name }}
+            {{ form.field_type }}
+            {{ form.is_required }}
+            {{ form.DELETE }} 
+        </div>
+        {% endfor %}
+    </div>
+    <button type="button" id="add-form-button">Add More</button>
+    <input type="submit" value="Save Changes">
+</form>
+
+<a href="{% url 'manage_fields' %}">Back to Canidate Table</a>
+
+<script>
+// This script will handle the "Add More" button functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const addButton = document.getElementById('add-form-button');
+    const formsetContainer = document.getElementById('formset-container');
+    const totalForms = document.getElementById('id_form-TOTAL_FORMS');
+    const formsetPrefix = "{{ formset.prefix }}";
+
+    addButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        let formNum = formsetContainer.getElementsByClassName('dynamic-form').length;
+        let newForm = formsetContainer.querySelector('.dynamic-form:last-child').cloneNode(true);
+        
+        // Update the new form's index and clear its content
+        let formRegex = RegExp(`id_${formsetPrefix}-(\\d+)-`, 'g');
+        newForm.innerHTML = newForm.innerHTML.replace(formRegex, (match, number) => `id_${formsetPrefix}-${formNum}-`);
+        newForm.querySelectorAll('input, select, textarea').forEach(element => {
+            if (element.tagName === 'INPUT' && element.type !== 'checkbox') {
+                element.value = '';
+            }
+            if (element.tagName === 'INPUT' && element.type === 'checkbox') {
+                element.checked = false;
+            }
+        });
+        
+        formsetContainer.appendChild(newForm);
+        totalForms.setAttribute('value', `${formNum + 1}`);
+    });
+});
+</script>
+
+</body>
+{% endblock %}

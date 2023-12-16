@@ -1,0 +1,461 @@
+{% load custom_filters %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Cards Layout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Manrope:wght@600;800&family=Sora:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+            <!-- FONTAWESOME -->
+            <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}" />
+            <!-- FONTAWESOME -->
+    <style>
+        *{
+      font-family: 'Sora', sans-serif;
+      margin: 0;
+    }
+
+        body {
+      margin: 0;
+      padding: 0;
+      background: url('{% static 'images/transparentbg.png' %}'); /* Replace with your image path */
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+        .candidate-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .candidate-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .candidate-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 20px; /* Half of height to pull the image up */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tab-buttons .btn {
+            border-radius: 20px;
+            margin-right: 5px;
+        }
+
+        .apply-btn {
+           border: none;
+            bottom: 20px;
+            background-color: #FFC220;
+            margin-top: 100px;
+            text-align: right;
+            margin-right: 50px;
+        }
+        .row{
+            height: 340px;
+            width: 1200px;
+            margin:auto;
+        }
+        .positionbtn{
+            text-align: right;
+
+        }
+                /* HEADER */
+
+header {
+    padding: 1rem 0;
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+    background-color: maroon;
+
+}
+
+/* VARIABLES */
+:root {
+    --primary-color: maroon;
+    --secondary-color: #111111;
+    --primary-font: 'Poppins', sans-serif;
+    --secondary-font: 'Overpass', sans-serif;
+}
+
+/* RESET DEFAULT STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+    color: white;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--secondary-font);
+    margin-bottom: 1rem;
+}
+
+/* UTILITY CLASSES */
+.container1 {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-primary {
+    color: var(--primary-color);
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.btn {
+    display: inline-block;
+    max-width: max-content;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #ffc220;
+}
+.btn-secondary {
+    color: #fff;
+}
+.btn-secondary:hover {
+    background-color: #ffc220;
+    color: #fff;
+}
+
+.section-subheading {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: maroon;
+    margin-bottom: 1rem;
+}
+
+.section-heading {
+    font-size: 3rem;
+    max-width: 600px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+.section-heading.left {
+    margin-right: auto;
+}
+
+.section-heading.right {
+    margin-left: auto;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--primary-font);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+    color: var(--secondary-color);
+}
+
+section {
+    position: relative;
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+
+}
+
+header.sticky{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.header__logo img{
+    width: 100px;
+}
+.header__menu {
+    gap: 3rem;
+}
+.header__menu li a {
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+.header__menu li a:hover{
+    color: #FFC220;
+}
+
+header .right{
+    gap: 1rem;
+}
+
+.menu-btn {
+    display: none;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: transparent;
+}
+.btn-secondary:hover {
+    background-color: #ffc220;
+    color: #fff;
+}
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .candidate-image {
+                width: 60px;
+                height: 60px;
+                margin-top: -30px;
+            }
+            .row{
+            height: 450px;
+            width: 400px;
+            margin:auto;
+        }
+
+            .apply-btn {
+                position: static;
+                width: 100%;
+                margin-top: 20px;
+            }
+            .container{
+    padding: 0 1rem;
+}
+
+section{
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+}
+
+.section-heading{
+    font-size: 2rem;
+}
+
+/* HEADER */
+
+.header__menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+    background-color: maroon;
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+}
+
+.header__menu.show{
+    transform: translateX(0);
+}
+
+.header__menu li {
+    margin: 1rem 0;
+}
+
+.menu-btn{
+    display: block;
+    z-index: 99;
+}
+
+        }
+        
+    </style>
+</head>
+<body>
+        <!-- HEADER -->
+        <header>
+            <div class="container flex-row">
+              <div class="header__logo">
+                <img src="{% static 'images/iCast Images/iCast.png' %}" alt="iCast Logo" />
+              </div>
+              <nav>
+                <ul class="header__menu flex-row">
+                  <li>
+                    <a href="#hero" style="color: #FFC220;">Home</a>
+                  </li>
+                  <li>
+                    <a href="{%url 'partylist_view' %}">Partylists</a>
+                  </li>
+                  <li>
+                    <a href="{%url 'candidate_cards_view' %}">Candidates</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'Voting_open' %}">Vote Now</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'results_page' %}">Results</a>
+                  </li>
+                </ul>
+              </nav>
+              <div class="right flex-center">
+                <a href="landing.html" class="btn btn-secondary">Logout</a>
+                <div class="menu-btn">
+                  <i class="fas fa-bars"></i>
+                </div>
+              </div>
+            </div>
+          </header>
+      
+          <!-- HEADER -->
+
+          <div id="election-info">
+            <h1>{{ current_election.name }}</h1><br><br>
+        </div>
+        <form method="post" action="{% url 'submit_vote' %}" id="votingForm">
+            {% csrf_token %}
+            {% for position_id, candidates_info in positions_with_candidates.items %}
+            <div id="{{ position_id }}" style="background-color: white; padding: 20px; margin-top: 20px; border-radius: 20px;" class="container">
+                <div style="margin-top: 40px; margin-bottom: 50px; text-align: center;" class="PositionName">
+                    <h3>{{ candidates_info.name }}</h3>
+                </div>
+                <div style="height: auto; background-color: #EEE2DE; padding: 20px; border-radius:20px;" class="row row-cols-1 row-cols-md-3 ">
+                    {% for candidate in candidates_info.candidates %}
+                    <div style="margin: 10px;" class="col">
+                        <div style="width:350px; height:350px; background-color: #EA906C;" class="candidate-card text-white text-center p-3">
+                            <img src="{{ candidate.image_url }}" alt="Photo of {{ candidate.name }}" class="candidate-image">
+                            <h5 class="mt-2">{{ candidate.name }}</h5>
+                            <p class="mb-0">{{ candidate.party }}</p>
+                            <!-- Use radio or checkbox based on max_candidates_elected -->
+                            {% if candidates_info.max_candidates_elected > 1 %}
+                            <input type="checkbox" name="position_{{ position_id }}" value="{{ candidate.id }}" data-candidate-name="{{ candidate.name }}">
+                            {% else %}
+                                <input type="radio" name="position_{{ position_id }}" value="{{ candidate.id }}" data-candidate-name="{{ candidate.name }}" required>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No candidates</p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </form>
+        <div class="positionbtn" id="reviewVoteButton"> <button class="btn btn-danger apply-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <img src="{% static 'images/ballot.png' %} " style="height: 20px; width: 20px;" > Cast Votes
+        </button>
+        </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="color: white; background-color:#2B2A4C;">
+            <h5 class="modal-title" id="exampleModalLabel">Review Votes</h5>
+            </div>
+            <div class="modal-body" id="voteReviewBody">
+                <!-- Selected candidate information will be displayed here -->
+            </div>
+            <div class="modal-footer border-0">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: transparent;color:black;">Close</button>
+            <a href="votesuccess.html">
+            <button type="submit" form="votingForm" class="btn btn-primary" style="background-color:#4E9FFF;border:none;">Submit Votes</button>
+            </a>
+            </div>
+        </div>
+        </div>
+
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('exampleModal').addEventListener('show.bs.modal', function() {
+        // Clear previous entries in the modal
+        var reviewBody = document.getElementById('voteReviewBody');
+        reviewBody.innerHTML = '';
+    
+        // Collect selected candidates from the form
+        var positions = document.querySelectorAll('.PositionName h3');
+        positions.forEach(function(position) {
+            var positionId = position.parentElement.parentElement.id;
+            var positionName = position.textContent;
+            var inputs = document.querySelectorAll(`#votingForm input[name="position_${positionId}"]:checked`);
+            
+            var selectedCandidates = [];
+            inputs.forEach(function(input) {
+                var candidateName = input.getAttribute('data-candidate-name');
+                selectedCandidates.push(candidateName);
+            });
+    
+            // Create a paragraph element to display the position and selected candidates
+            var p = document.createElement('p');
+            p.textContent = positionName + ': ' + (selectedCandidates.join(', ') || 'None');
+            reviewBody.appendChild(p);
+        });
+    });
+});
+        </script>
+
+
+</body>
+</html>
